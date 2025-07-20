@@ -2,38 +2,31 @@ import speech_recognition as sr
 import pyttsx3
 
 r = sr.Recognizer()
-engine = pyttsx3.init()
 
 def record_text():
     while True:
         try:
-            with sr.Microphone() as source:
-                print("Listening...")
-                r.adjust_for_ambient_noise(source, duration=0.5)
-                audio = r.listen(source)
-                text = r.recognize_google(audio)
-                print(f"You said: {text}")
-                return text
+            with sr.Microphone() as source2:
+                print("Listening... 🎤")
+                r.adjust_for_ambient_noise(source2, duration=0.5)
+                audio2 = r.listen(source2)
+
+                MyText = r.recognize_google(audio2)
+                return MyText
 
         except sr.RequestError as e:
-            print(f"Could not request results; {e}")
+            print("Could not request results; {0}".format(e))
         except sr.UnknownValueError:
             print("Sorry, I couldn't understand that.")
+    return
 
 def output_text(text):
     with open("output.txt", "a") as f:
         f.write(text + "\n")
 
-def speak(text):
-    engine.say(text)
-    engine.runAndWait()
+while True:
+    text = record_text()
 
-try:
-    while True:
-        text = record_text()
-        output_text(text)
-        speak("Text recorded.")
-        print("Wrote text.")
-
-except KeyboardInterrupt:
-    print("\n[!] Exiting gracefully.")
+    if text:
+        print("You said:", text) 
+        output_text(text)         
