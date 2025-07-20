@@ -69,6 +69,7 @@ class SpeechToTextGUI:
             with sr.Microphone() as source:
                 with suppress_stderr():
                     r.adjust_for_ambient_noise(source, duration=1.5)
+                    r.dynamic_energy_adjustment_ratio = 1.5
                     audio = r.listen(source)
 
                 try:
