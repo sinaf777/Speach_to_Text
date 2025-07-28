@@ -6,3 +6,6 @@ pip install SpeechRecognition pyttsx3
 sudo pacman -S portaudio tk
 pip install pyaudio
 python gui_speech_to_text.py
+
+i have added a gui you can run that simply
+
